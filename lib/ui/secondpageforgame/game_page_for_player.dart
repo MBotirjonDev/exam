@@ -15,7 +15,7 @@ class GamePageForPlayer extends StatefulWidget {
 
 class _GamePageForPlayerState extends State<GamePageForPlayer> {
   int computerNum = (Random().nextInt(2) + 1);
-  List<String> lstBu = ["Rock", "Paper", "Scissor"];
+  List<String> lstBu = ["Rock", "Paper", "Scissors"];
   String? computerString;
 
   int number = 0;
