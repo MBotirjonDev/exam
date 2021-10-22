@@ -17,6 +17,7 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
   int computerNum = (Random().nextInt(2) + 1);
   List<String> lstBu = ["Rock", "Paper", "Scissors"];
   String? computerString;
+  
 
   int number = 0;
   String? userIcon;
@@ -46,7 +47,7 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
           children: [
             Positioned(
               left: 100.0,
-              top: 70.0,
+              top: 30.0,
               child: Text(
                 "Computer",
                 style: TextStyle(
@@ -57,7 +58,7 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
             ),
             Positioned(
               left: 30.0,
-              top: 100.0,
+              top: 80.0,
               child: InkWell(
                 child: CircleAvatar(
                   radius: 40.0,
@@ -68,7 +69,7 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
             ),
             Positioned(
               left: 150.0,
-              top: 120.0,
+              top: 100.0,
               child: InkWell(
                 child: CircleAvatar(
                   radius: 40.0,
@@ -79,7 +80,7 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
             ),
             Positioned(
               left: 270.0,
-              top: 140.0,
+              top: 120.0,
               child: InkWell(
                 child: CircleAvatar(
                   radius: 40.0,
@@ -89,7 +90,7 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
               ),
             ),
             Positioned(
-              top: 225.0,
+              top: 180.0,
               child: Container(
                 height: 450.0,
                 width: 500.0,
@@ -98,11 +99,11 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
                     Container(
                       width: MediaQuery.of(context).size.width / 3,
                       color: Colors.greenAccent,
-                      child: Text(
-                        functionBu(
+                      child:  Text(
+                        number == 0 ? "" : functionBu(
                           computerNum,
                           lstBu,
-                        ),
+                        ), 
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
@@ -121,7 +122,7 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
                     Container(
                       color: Colors.deepOrange,
                       width: MediaQuery.of(context).size.width / 3,
-                      child: Text(
+                      child: Text( userIcon == null ? "" : 
                         userIcon.toString(),
                         style: TextStyle(
                           fontSize: 30.0,
@@ -144,9 +145,9 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
                 ),
                 onTap: () {
                   setState(() {
-                    number = 1;
+                    //number = 1;
                     userIcon = "Rock";
-                    functionForWin();
+                    //functionForWin();
                   });
                 },
               ),
@@ -162,9 +163,9 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
                 ),
                 onTap: () {
                   setState(() {
-                    number = 2;
+                    //number = 1;
                     userIcon = "Paper";
-                    functionForWin();
+                    //functionForWin();
                   });
                 },
               ),
@@ -180,9 +181,9 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
                 ),
                 onTap: () {
                   setState(() {
-                    number = 3;
+                    //number = 1;
                     userIcon = "Scissors";
-                    functionForWin();
+                    //functionForWin();
                   });
                 },
               ),
@@ -194,7 +195,10 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.brown,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  number = 1;
+                  functionForWin();
+                },
                 child: Text("Men tanladim"),
               ),
             ),
@@ -445,6 +449,38 @@ class _GamePageForPlayerState extends State<GamePageForPlayer> {
         },
       )..show();
     } else if (userIcon == "Scissors" && computerString == "Rock") {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.SUCCES,
+        animType: AnimType.TOPSLIDE,
+        title: "Computer g'alaba qozondi",
+        desc: "Afsuski",
+        btnCancelOnPress: () {
+          setState(() {
+            computerNum = (Random().nextInt(2) + 1);
+          });
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  GamePageForPlayer(widget.name, widget.color),
+            ),
+          );
+        },
+        btnOkOnPress: () {
+          setState(() {
+            computerNum = (Random().nextInt(2) + 1);
+          });
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  GamePageForPlayer(widget.name, widget.color),
+            ),
+          );
+        },
+      )..show();
+    } else if (userIcon == "Paper" && computerString == "Scissors") {
       AwesomeDialog(
         context: context,
         dialogType: DialogType.SUCCES,
